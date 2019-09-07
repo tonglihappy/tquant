@@ -17,7 +17,9 @@ def getql():
 
 def time_delta(quarter, period):
     periods = []
+
     sdate = datetime.datetime.strptime(period,'%Y%m%d')
+    print(sdate.month)
     edate1 = sdate - relativedelta(years=1)
     edate2 = sdate - relativedelta(years=2)
     edate3 = sdate - relativedelta(years=3)
@@ -30,6 +32,9 @@ def time_delta(quarter, period):
     return periods
 
 if __name__ == "__main__":
+
+    cashflow = []
+
     ts.set_token('c21631bece923458e470682569cc5998e124a09871666de852cdd439')
     pro = ts.pro_api()
 
@@ -38,9 +43,18 @@ if __name__ == "__main__":
     #print(quarter, type(period))
     time_delta(quarter, period)
 
-    df = pro.cashflow(ts_code='300104.SZ', start_date='20160101', period='20190831', end_date='20190906')
+    df = pro.cashflow(ts_code='300104.SZ', start_date='20190101', end_date='20190907')
 
-    print(df)
+    cashflow.append(df[0:1])
+
+    print(cashflow)
+
+    for p
+
+
+ #   df = pro.cashflow(ts_code='300104.SZ', period='20190630')
+
+#    print(df)
 #    print(df.end_date)
 #    print(df['c_fr_sale_sg'])
 
