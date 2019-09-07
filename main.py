@@ -41,7 +41,6 @@ if __name__ == "__main__":
     quarter, period = getql() 
 
     #print(quarter, type(period))
-    time_delta(quarter, period)
 
     df = pro.cashflow(ts_code='300104.SZ', start_date='20190101', end_date='20190907')
 
@@ -49,10 +48,11 @@ if __name__ == "__main__":
 
     print(cashflow)
 
-    for p
+    for date in time_delta(quarter, period):
+        df = pro.cashflow(ts_code='300104.SZ', period=date)
+        
 
 
- #   df = pro.cashflow(ts_code='300104.SZ', period='20190630')
 
 #    print(df)
 #    print(df.end_date)
