@@ -34,6 +34,7 @@ def time_delta(quarter, period):
 if __name__ == "__main__":
 
     cashflow = []
+    income = []
 
     ts.set_token('c21631bece923458e470682569cc5998e124a09871666de852cdd439')
     pro = ts.pro_api()
@@ -46,17 +47,21 @@ if __name__ == "__main__":
 
     cashflow.append(df[0:1])
 
-    print(cashflow)
-
     for date in time_delta(quarter, period):
         df = pro.cashflow(ts_code='300104.SZ', period=date)
-        
+        cashflow.append(df)
 
-
-
-#    print(df)
-#    print(df.end_date)
 #    print(df['c_fr_sale_sg'])
+
+    df = pro.income(ts_code='300104.SZ', start_date='20190101', end_date='20190907')
+    
+    income.append(df[0:1])
+    for date in time_delta(quarter, period):
+        df = pro.income(ts_code='300104.SZ', period=date)
+        income.append(df)
+
+    for cf in cashflow:
+        print(list.index(cf), cf.c_fr_sale_sg)
 
 #    df = pro.income(ts_code='300104.SZ', start_date='20160101', end_date='20180830', period='',fields='ts_code,ann_date,f_ann_date,end_date, report_type,revenue')
 #    print(df)
